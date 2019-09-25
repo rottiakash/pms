@@ -1,0 +1,20 @@
+table {
+    width: 100%;
+  }
+
+body{
+    background-color: grey;
+}
+.head div{
+    position: relative;
+    font-family: 'Anton', sans-serif;
+    font-size: 4vw;
+    background-color: gray;
+}
+div{
+    background-color: white;
+}
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }

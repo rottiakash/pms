@@ -1,0 +1,9 @@
+body{
+    background-color: grey;
+}
+div{
+    position: relative;
+    top: 40%;
+    font-family: 'Anton', sans-serif;
+    font-size: 5vw;
+}
