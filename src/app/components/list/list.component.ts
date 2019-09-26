@@ -30,7 +30,9 @@ export class ListComponent implements OnInit {
   }
 
   selectRow(row){
-    console.log("Hello");
-    this.router.navigateByUrl('detail/'+row.id+'/'+row.name+'/'+row.email+'/'+row.phone+'/'+row.gender+'/'+row.dob+'/'+row.address);
+    var address:String = row.address;
+    address = address.replace('(','*');
+    address = address.replace(')','^');
+    this.router.navigateByUrl('detail/'+row.id+'/'+row.name+'/'+row.email+'/'+row.phone+'/'+row.gender+'/'+row.dob+'/'+address);
   }
 }

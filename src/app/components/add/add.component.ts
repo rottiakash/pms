@@ -24,22 +24,24 @@ export class AddComponent implements OnInit {
     console.log(this.email);
     console.log(this.phone);
     console.log(this.gender);
-    console.log(this.dob);
-    console.log(this.addr)
+    console.log(this.dob);  
+    var address:String = (this.addr);
+    address = address.replace('/','*');
+    console.log(address)
     var string:String = String(this.dob)
     var tokens = string.split(" ")
     var dd:String = tokens[2];
     var mmm:String = tokens[1];
     var yyyy:String = tokens[3];
-    this.url="http://localhost:5000/addPatient/"+this.name+"/"+this.email+"/"+this.phone+"/"+this.gender+"/"+dd+"-"+mmm+"-"+yyyy+"/"+this.addr;
+    //this.url="http://localhost:5000/addPatient/"+this.name+"/"+this.email+"/"+this.phone+"/"+this.gender+"/"+dd+"-"+mmm+"-"+yyyy+"/"+this.addr;
     console.log(this.url);
-    this.http.get("http://localhost:5000/addPatient/"+this.name+"/"+this.email+"/"+this.phone+"/"+this.gender+"/"+dd+"-"+mmm+"-"+yyyy+"/"+this.addr, {observe: 'response'})
+     this.http.get("http://localhost:5000/addPatient/"+this.name+"/"+this.email+"/"+this.phone+"/"+this.gender+"/"+dd+"-"+mmm+"-"+yyyy+"/"+address, {observe: 'response'})
     .subscribe(response => {
       window.alert("Added Successfully");
       // You can access status:
       console.log(response.status);
       // Or any other header:
       console.log(response.headers.get('X-Custom-Header'));
-    });
+    }); 
   }
 }

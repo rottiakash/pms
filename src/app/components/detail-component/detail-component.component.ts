@@ -27,7 +27,8 @@ export class DetailComponentComponent implements OnInit {
     this.gender = this.route.snapshot.paramMap.get('gender');
     this.dob = this.route.snapshot.paramMap.get('dob');
     this.address = this.route.snapshot.paramMap.get('addr');
-
+    this.address = this.address.replace('*','(');
+    this.address = this.address.replace('^',')');
   }
 
 }

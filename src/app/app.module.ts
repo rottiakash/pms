@@ -20,6 +20,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { ListComponent } from './components/list/list.component';
 import { DetailComponentComponent } from './components/detail-component/detail-component.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { commService } from './services/comm.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +54,7 @@ import {MatTabsModule} from '@angular/material/tabs';
       appId: "1:64466382438:web:c44968deadbb59d33307a7"
     })
   ],
-  providers: [AngularFireAuthModule,AngularFireAuthGuard,{provide: MAT_DATE_LOCALE, useValue: 'en-GB'}],
+  providers: [AngularFireAuthModule,AngularFireAuthGuard,{provide: MAT_DATE_LOCALE, useValue: 'en-GB'},commService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
