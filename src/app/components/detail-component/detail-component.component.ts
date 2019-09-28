@@ -17,6 +17,7 @@ export class DetailComponentComponent implements OnInit {
   email: string;
   phone: number;
   gender: string;
+  show: any;
   dataSource:any;
   dob: string;
   address: string;
