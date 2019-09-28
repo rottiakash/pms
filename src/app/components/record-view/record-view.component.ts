@@ -31,7 +31,7 @@ export class RecordViewComponent implements OnInit {
     this.time  = this.route.snapshot.paramMap.get('time')
     this.title  = this.route.snapshot.paramMap.get('title')
     this.pname = this.route.snapshot.paramMap.get('pname')
-    this.plist = this.http.get<String[]>("http://localhost:5000/getPresc/"+this.rid)
+    this.plist = this.http.get<String[]>("https://rottiakash.pythonanywhere.com/getPresc/"+this.rid)
   }
   uploadFile(event) {
     this.per = true;
@@ -42,14 +42,14 @@ export class RecordViewComponent implements OnInit {
     task.snapshotChanges().pipe(
       finalize(() => {
       this.show = false;
-      this.http.get("http://localhost:5000/addPresc/"+this.rid+"/"+filePath, {observe: 'response'})
+      this.http.get("https://rottiakash.pythonanywhere.com/addPresc/"+this.rid+"/"+filePath, {observe: 'response'})
     .subscribe(response => {
       window.alert("Upload complete")
-      this.plist = this.http.get<String[]>("http://localhost:5000/getPresc/"+this.rid)
+      this.plist = this.http.get<String[]>("https://rottiakash.pythonanywhere.com/getPresc/"+this.rid)
       // You can access status:
-      console.log(response.status);
+      //console.log(response.status);
       // Or any other header:
-      console.log(response.headers.get('X-Custom-Header'));
+      //console.log(response.headers.get('X-Custom-Header'));
     }); 
 
       this.per = false;
