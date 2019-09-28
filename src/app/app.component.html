@@ -37,7 +37,7 @@
     </ul>
   </div>  
 </nav>
-<div class="form-popup" id="myForm" *ngIf="show">
+<div *ngIf="show" class="form-popup" id="myForm" >
   <form class="form-container">
     <h1>Login</h1>
 
@@ -47,7 +47,7 @@
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" required [(ngModel)]="password">
 
-    <button type="button" class="btn" (click)="login();show=false">Login</button>
+    <button type="button" class="btn" (click)="show = false;login()">Login</button>
     <button type="button" class="btn cancel" (click)="show = false">Close</button>
   </form>
 </div>

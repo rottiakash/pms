@@ -1,37 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { StringLike } from '@firebase/util';
 import { Observable } from 'rxjs';
-import { finalize } from "rxjs/operators";
 import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-
 @Component({
-  selector: 'app-record-view',
-  templateUrl: './record-view.component.html',
-  styleUrls: ['./record-view.component.css']
+  selector: 'app-misc',
+  templateUrl: './misc.component.html',
+  styleUrls: ['./misc.component.css']
 })
-export class RecordViewComponent implements OnInit {
-  rid: Number;
-  date: String;
-  time: String;
-  title: String;
-  pname: String;
-  i = 1;
+export class MiscComponent implements OnInit {
+
+  id:Number;
+  name:String;
   show:any;
-  plist:Observable<String[]>
-  per = false
+  per = false;
+  xlist: Observable<String[]>
   uploadPercent:Observable<number>;
-  downloadURL:Observable<String>;
-  constructor(private route:ActivatedRoute,private storage:AngularFireStorage, private http:HttpClient) { }
+  constructor(private route:ActivatedRoute,private http:HttpClient,private storage:AngularFireStorage) { }
 
   ngOnInit() {
-    this.rid  = Number(this.route.snapshot.paramMap.get('rid'))
-    this.date  = this.route.snapshot.paramMap.get('date')
-    this.time  = this.route.snapshot.paramMap.get('time')
-    this.title  = this.route.snapshot.paramMap.get('title')
-    this.pname = this.route.snapshot.paramMap.get('pname')
-    this.plist = this.http.get<String[]>("http://localhost:5000/getPresc/"+this.rid)
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.name = this.route.snapshot.paramMap.get('name');
+    this.xlist = this.http.get<String[]>("http://localhost:5000/getMisc/"+this.id)
   }
   uploadFile(event) {
     this.per = true;
@@ -42,10 +33,10 @@ export class RecordViewComponent implements OnInit {
     task.snapshotChanges().pipe(
       finalize(() => {
       this.show = false;
-      this.http.get("http://localhost:5000/addPresc/"+this.rid+"/"+filePath, {observe: 'response'})
+      this.http.get("http://localhost:5000/addMisc/"+this.id+"/"+filePath, {observe: 'response'})
     .subscribe(response => {
       window.alert("Upload complete")
-      this.plist = this.http.get<String[]>("http://localhost:5000/getPresc/"+this.rid)
+      this.xlist = this.http.get<String[]>("http://localhost:5000/getMisc/"+this.id)
       // You can access status:
       console.log(response.status);
       // Or any other header:
@@ -69,4 +60,5 @@ export class RecordViewComponent implements OnInit {
     }
     return result;
  }
+
 }

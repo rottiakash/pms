@@ -24,6 +24,9 @@ import { commService } from './services/comm.service';
 import { RecordViewComponent } from './components/record-view/record-view.component';
 import { AngularFireStorageModule,StorageBucket } from "@angular/fire/storage";
 import { PviewComponent } from './components/pview/pview.component';
+import { XrayComponent } from './components/xray/xray.component';
+import { ReportComponent } from './components/report/report.component';
+import { MiscComponent } from './components/misc/misc.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +36,10 @@ import { PviewComponent } from './components/pview/pview.component';
     ListComponent,
     DetailComponentComponent,
     RecordViewComponent,
-    PviewComponent
+    PviewComponent,
+    XrayComponent,
+    ReportComponent,
+    MiscComponent
   ],
   imports: [
     BrowserModule,

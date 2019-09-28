@@ -8,6 +8,9 @@ import { ListComponent } from './components/list/list.component';
 import { DetailComponentComponent } from './components/detail-component/detail-component.component';
 import { RecordViewComponent } from './components/record-view/record-view.component';
 import { PviewComponent } from './components/pview/pview.component';
+import { XrayComponent } from './components/xray/xray.component';
+import { ReportComponent } from './components/report/report.component';
+import { MiscComponent } from './components/misc/misc.component';
 
 const routes: Routes = [
   { path:"", redirectTo:"home", pathMatch:"full" },
@@ -17,7 +20,10 @@ const routes: Routes = [
   { path:"list/:name", component:ListComponent, canActivate: [AngularFireAuthGuard]  },
   { path:"detail/:id/:name/:email/:phone/:gender/:dob/:addr", component:DetailComponentComponent, canActivate: [AngularFireAuthGuard]  },
   { path:"recordView/:rid/:date/:time/:title/:pname", component:RecordViewComponent, canActivate: [AngularFireAuthGuard]  },
-  { path:"pview/:uid", component:PviewComponent, canActivate: [AngularFireAuthGuard]  }
+  { path:"pview/:uid", component:PviewComponent, canActivate: [AngularFireAuthGuard]  },
+  { path:"xray/:id/:name", component:XrayComponent, canActivate: [AngularFireAuthGuard]  },
+  { path:"report/:id/:name", component:ReportComponent, canActivate: [AngularFireAuthGuard]  },
+  { path:"misc/:id/:name", component:MiscComponent, canActivate: [AngularFireAuthGuard]  }
 ];
 const redirectUnauthorizedToLogin = redirectUnauthorizedTo(['home']);
 @NgModule({

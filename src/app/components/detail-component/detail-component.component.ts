@@ -39,9 +39,9 @@ export class DetailComponentComponent implements OnInit {
     this.address = this.address.replace('^',')');
     this.http.get<PRecord[]>("http://localhost:5000/getRecord/"+this.id).subscribe(data=>{
       this.dataSource=new MatTableDataSource(data);
-                                                                                            
+      this.dataSource.paginator = this.paginator;                                                                                      
   });
-  this.dataSource.paginator = this.paginator;
+ 
   
   }
   applyFilter(filterValue: string) {
@@ -67,5 +67,18 @@ export class DetailComponentComponent implements OnInit {
       // Or any other header:
       console.log(response.headers.get('X-Custom-Header'));
     }); 
+  }
+
+  xray()
+  {
+    this.router.navigateByUrl('/xray/'+this.id+"/"+this.name);
+  }
+  report()
+  {
+    this.router.navigateByUrl('/report/'+this.id+"/"+this.name);
+  }
+  misc()
+  {
+    this.router.navigateByUrl('/misc/'+this.id+"/"+this.name);
   }
 }

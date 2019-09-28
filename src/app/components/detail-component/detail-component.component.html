@@ -26,10 +26,13 @@
                   <button type="submit" class="btn cancel" (click)="show = false">Close</button>
                 </form>
               </div></div>
-              <div *ngIf="!show" class="container align-middle" style="position: relative; max-width: 200px; font-family: 'Anton', sans-serif;
+              <div *ngIf="!show" class="container align-middle" style="position: relative; max-width: 100%; font-family: 'Anton', sans-serif;
               font-size: 1vw;">
-               <img src="assets/add.png" (click)="show = true" *ngIf="!show"> <span (click)="show = true"> Add Record</span></div>
-               <br>
+              <img src="assets/add.png" (click)="show = true" *ngIf="!show"> <span (click)="show = true"> Add Record </span>   
+              <img src="assets/xray.png" (click)="xray()" *ngIf="!show"> <span (click)="xray()"> View X-Rays </span>   
+              <img src="assets/report.png" (click)="report()" *ngIf="!show"> <span (click)="report()"> View Reports </span>   
+               <img src="assets/misc.png" (click)="misc()" *ngIf="!show"> <span (click)="misc()"> View Misc.</span></div>
+               <br>    
                <div class="record mat-elevation-z8">
                <mat-form-field>
                         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">

@@ -1,9 +1,10 @@
 body{
     background-color: grey;
 }
-
 img {
+    display: inline-block;
     width: 4vw;
     background: transparent;
 }
+
 a { color: inherit; }

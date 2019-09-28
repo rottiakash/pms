@@ -20,6 +20,7 @@
                 <div *ngIf="per">Uploaded: {{ uploadPercent | async}}%</div>
                 </div>
                <br>
+               Available Prescriptions are:-
                <ol>
                    <li *ngFor="let p of plist | async;let i = index"><a routerLink='/pview/{{p}}'> Prescription {{i+1}}</a></li>
                </ol>

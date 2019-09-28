@@ -51,6 +51,7 @@ body{
 }
 
 img {
+    display: inline-block;
     width: 4vw;
     background: transparent;
 }
@@ -66,4 +67,7 @@ mat-form-field {
     font-size: 14px;
     width: 100%;
     background-color: white;
+  }
+  span{
+  margin-right: 50px;
   }
