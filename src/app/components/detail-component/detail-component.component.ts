@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Patient } from 'src/app/Patient';
+import { HttpClient } from '@angular/common/http';
+import { PRecord } from 'src/app/PRecord';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-detail-component',
@@ -14,11 +17,15 @@ export class DetailComponentComponent implements OnInit {
   email: string;
   phone: number;
   gender: string;
+  dataSource:any;
   dob: string;
   address: string;
   navLinks = ['Hello1']
-  constructor(private route:ActivatedRoute) { }
-
+  title:any;
+  displayedColumns: string[] = ['id', 'rid', 'tdate', 'title','ttime'];
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  constructor(private route:ActivatedRoute, private http:HttpClient) { }
+ 
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.name = this.route.snapshot.paramMap.get('name');
@@ -29,6 +36,31 @@ export class DetailComponentComponent implements OnInit {
     this.address = this.route.snapshot.paramMap.get('addr');
     this.address = this.address.replace('*','(');
     this.address = this.address.replace('^',')');
+    this.http.get<PRecord[]>("http://localhost:5000/getRecord/"+this.id).subscribe(data=>{
+      this.dataSource=new MatTableDataSource(data);
+                                                                                            
+  });
+  this.dataSource.paginator = this.paginator;
+  
   }
-
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  submit()
+  {
+    console.log("Click");
+    this.http.get("http://localhost:5000/addRecord/"+this.id+"/"+this.title, {observe: 'response'})
+    .subscribe(response => {
+      window.alert("Added Successfully");
+      this.http.get<PRecord[]>("http://localhost:5000/getRecord/"+this.id).subscribe(data=>{
+      this.dataSource=new MatTableDataSource(data);
+                                                                                            
+  });
+  this.dataSource.paginator = this.paginator;
+      // You can access status:
+      console.log(response.status);
+      // Or any other header:
+      console.log(response.headers.get('X-Custom-Header'));
+    }); 
+  }
 }

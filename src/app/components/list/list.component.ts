@@ -33,6 +33,7 @@ export class ListComponent implements OnInit {
     var address:String = row.address;
     address = address.replace('(','*');
     address = address.replace(')','^');
+    address = address.replace('/','%2F');
     this.router.navigateByUrl('detail/'+row.id+'/'+row.name+'/'+row.email+'/'+row.phone+'/'+row.gender+'/'+row.dob+'/'+address);
   }
 }
