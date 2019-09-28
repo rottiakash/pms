@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Patient } from 'src/app/Patient';
 import { HttpClient } from '@angular/common/http';
 import { PRecord } from 'src/app/PRecord';
@@ -25,7 +25,7 @@ export class DetailComponentComponent implements OnInit {
   title:any;
   displayedColumns: string[] = ['id', 'rid', 'tdate', 'title','ttime'];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  constructor(private route:ActivatedRoute, private http:HttpClient) { }
+  constructor(private route:ActivatedRoute, private http:HttpClient,private router:Router) { }
  
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
@@ -46,6 +46,10 @@ export class DetailComponentComponent implements OnInit {
   }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  selectRow(row)
+  {
+    this.router.navigateByUrl('/recordView/'+row.rid+'/'+row.tdate+'/'+row.ttime+'/'+row.title+'/'+this.name);
   }
   submit()
   {

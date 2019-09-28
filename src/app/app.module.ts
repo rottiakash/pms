@@ -21,6 +21,9 @@ import { ListComponent } from './components/list/list.component';
 import { DetailComponentComponent } from './components/detail-component/detail-component.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { commService } from './services/comm.service';
+import { RecordViewComponent } from './components/record-view/record-view.component';
+import { AngularFireStorageModule,StorageBucket } from "@angular/fire/storage";
+import { PviewComponent } from './components/pview/pview.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +31,9 @@ import { commService } from './services/comm.service';
     SearchComponent,
     AddComponent,
     ListComponent,
-    DetailComponentComponent
+    DetailComponentComponent,
+    RecordViewComponent,
+    PviewComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +45,7 @@ import { commService } from './services/comm.service';
     MatFormFieldModule,
     MatInputModule,
     MatTabsModule,
+    AngularFireStorageModule,
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
@@ -54,7 +60,7 @@ import { commService } from './services/comm.service';
       appId: "1:64466382438:web:c44968deadbb59d33307a7"
     })
   ],
-  providers: [AngularFireAuthModule,AngularFireAuthGuard,{provide: MAT_DATE_LOCALE, useValue: 'en-GB'},commService],
+  providers: [AngularFireAuthModule,AngularFireAuthGuard,{provide: MAT_DATE_LOCALE, useValue: 'en-GB'},commService,{ provide: StorageBucket, useValue: 'patient-medical-system.appspot.com' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
