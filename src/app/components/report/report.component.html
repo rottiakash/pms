@@ -4,20 +4,20 @@
     
 <body>
             
-    <div style="font-family:  'Anton', sans-serif; font-size: 1.5vw;">ID: {{id}}<br>
+    <div style="line-height: 2.0; font-size: 1.2vw;color: white;">ID: {{id}}<br>
                                                                     Name: {{name}}<br>
 
     </div>
-    <div *ngIf="!show" class="container align-middle" style="position: relative; max-width: 200px; font-family: 'Anton', sans-serif;
+    <div *ngIf="!show" class="container align-middle" style="position: relative; max-width: 200px; 
     font-size: 1vw;">
-    <img src="assets/add.png" (click)="show = true" *ngIf="!show"> <span (click)="show = true"> Add Report </span></div>
+    <img src="assets/add.png" (click)="show = true" *ngIf="!show"> <span style="color: white" (click)="show = true"> Add Report </span></div>
     <br>
-    <div *ngIf="show" class="container align-middle" style="position: relative; max-width: 200px; font-family: 'Anton', sans-serif;
+    <div *ngIf="show" class="container align-middle" style="position: relative; max-width: 200px; 
                font-size: 1vw;">
                <input type="file" (change)="uploadFile($event)"/>
                 <div *ngIf="per">Uploaded: {{ uploadPercent | async}}%</div>
                 </div>
-               Available Reports are:-
+                <span style="color: white">Available Reports are:- </span>
                <ol>
-                   <li *ngFor="let x of xlist | async;let i = index"><a routerLink='/pview/{{x}}'> Report {{i+1}}</a></li>
+                   <li *ngFor="let x of xlist | async;let i = index"><a routerLink='/pview/{{x}}'> <span style="color: white"> Report {{i+1}}</span></a><img (click)="remove(x)" class="delete" src="/assets/del.png"></li>
                </ol>

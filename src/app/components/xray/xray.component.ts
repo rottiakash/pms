@@ -23,7 +23,7 @@ export class XrayComponent implements OnInit {
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.name = this.route.snapshot.paramMap.get('name');
-    this.xlist = this.http.get<String[]>("http://localhost:5000/getXray/"+this.id)
+    this.xlist = this.http.get<String[]>("https://rottiakash.pythonanywhere.com/getXray/"+this.id)
   }
   uploadFile(event) {
     this.per = true;
@@ -34,14 +34,14 @@ export class XrayComponent implements OnInit {
     task.snapshotChanges().pipe(
       finalize(() => {
       this.show = false;
-      this.http.get("http://localhost:5000/addXray/"+this.id+"/"+filePath, {observe: 'response'})
+      this.http.get("https://rottiakash.pythonanywhere.com/addXray/"+this.id+"/"+filePath, {observe: 'response'})
     .subscribe(response => {
       window.alert("Upload complete")
-      this.xlist = this.http.get<String[]>("http://localhost:5000/getXray/"+this.id)
+      this.xlist = this.http.get<String[]>("https://rottiakash.pythonanywhere.com/getXray/"+this.id)
       // You can access status:
-      console.log(response.status);
+      //console.log(response.status);
       // Or any other header:
-      console.log(response.headers.get('X-Custom-Header'));
+      //console.log(response.headers.get('X-Custom-Header'));
     }); 
 
       this.per = false;
@@ -60,6 +60,22 @@ export class XrayComponent implements OnInit {
        result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
+ }
+
+ remove(uid)
+ {
+  this.http.get("https://rottiakash.pythonanywhere.com/remXray/"+uid, {observe: 'response'})
+  .subscribe(response => {
+    this.storage.ref(uid).getDownloadURL().subscribe(e =>{
+      this.storage.storage.refFromURL(e).delete();
+      window.alert("Removed Entry");
+      this.xlist = this.http.get<String[]>("https://rottiakash.pythonanywhere.com/getXray/"+this.id)
+    });
+    // You can access status:
+    //console.log(response.status);
+    // Or any other header:
+    //console.log(response.headers.get('X-Custom-Header'));
+  }); 
  }
 
 }

@@ -11,6 +11,7 @@ import { PviewComponent } from './components/pview/pview.component';
 import { XrayComponent } from './components/xray/xray.component';
 import { ReportComponent } from './components/report/report.component';
 import { MiscComponent } from './components/misc/misc.component';
+import { RedirectComponent } from './components/redirect/redirect.component';
 
 const routes: Routes = [
   { path:"", redirectTo:"home", pathMatch:"full" },
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path:"pview/:uid", component:PviewComponent, canActivate: [AngularFireAuthGuard]  },
   { path:"xray/:id/:name", component:XrayComponent, canActivate: [AngularFireAuthGuard]  },
   { path:"report/:id/:name", component:ReportComponent, canActivate: [AngularFireAuthGuard]  },
-  { path:"misc/:id/:name", component:MiscComponent, canActivate: [AngularFireAuthGuard]  }
+  { path:"misc/:id/:name", component:MiscComponent, canActivate: [AngularFireAuthGuard]  },
+  { path:"redirect", component:RedirectComponent, canActivate: [AngularFireAuthGuard]  }
 ];
 const redirectUnauthorizedToLogin = redirectUnauthorizedTo(['home']);
 @NgModule({

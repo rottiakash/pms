@@ -1,9 +1,40 @@
 body{
-    background-color: grey;
+    background-image: url('/assets/Background.jpg');
+    background-color: #cccccc;
+    height: 100%;
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-div{
+.msdc{
     position: relative;
-    top: 40%;
-    font-family: 'Anton', sans-serif;
-    font-size: 5vw;
+    top: 10%;
+    font-family: 'Yeseva One', cursive;
+    font-size: 4vw;
+}
+.addr{
+  position: relative;
+  top: 10%;
+  
+}
+.reg{
+  position: fixed;
+  bottom: 8px;
+  
+}
+.name{
+  position: fixed;
+  bottom: 60px;
+  
+}
+.desg{
+  position: fixed;
+  bottom: 35px;
+  
+}
+img{
+  position: relative;
+  top: 60px;
+  height: 100px;
+  width: 125px;
 }

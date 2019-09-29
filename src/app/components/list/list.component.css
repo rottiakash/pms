@@ -3,11 +3,16 @@ table {
   }
 
 body{
-    background-color: grey;
+     background-image: url('/assets/Background.jpg');
+    background-color: #cccccc;
+    height: 100%;
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .head div{
     position: relative;
-    font-family: 'Anton', sans-serif;
+    
     font-size: 4vw;
     background-color: gray;
 }

@@ -4,24 +4,27 @@
     
 <body>
             
-    <div style="font-family:  'Anton', sans-serif; font-size: 1.5vw;">Record ID: {{rid}}<br>
+    <div style="color: white; font-size: 1.2vw; line-height: 2.0">Record ID: {{rid}}<br>
                                                                     Patient Name: {{pname}}<br>
                                                                     Title: {{title}}<br>
                                                                     Date: {{date}}<br>
                                                                     Time: {{time}}<br>
     </div>
-    <div *ngIf="!show" class="container align-middle" style="position: relative; max-width: 200px; font-family: 'Anton', sans-serif;
+    <div *ngIf="!show" class="container align-middle" style="position: relative; max-width: 200px; 
               font-size: 1vw;">
-               <img src="assets/add.png" (click)="show = true" *ngIf="!show"> <span (click)="show = true"> Add Prescription</span></div>
+               <img src="assets/add.png" (click)="show = true" *ngIf="!show"> <span (click)="show = true" style="color: white">Add Prescription</span></div><br>
+               <div *ngIf="!show" class="container align-middle" style="position: relative; max-width: 200px; 
+               font-size: 1vw;">
+                <img src="assets/del.png" (click)="removeRec()" *ngIf="!show"> <span (click)=" removeRec()" style="color: white"> Delete Record</span></div>
                <br>
-               <div *ngIf="show" class="container align-middle" style="position: relative; max-width: 200px; font-family: 'Anton', sans-serif;
+               <div *ngIf="show" class="container align-middle" style="position: relative; max-width: 200px; 
                font-size: 1vw;">
                <input type="file" (change)="uploadFile($event)"/>
                 <div *ngIf="per">Uploaded: {{ uploadPercent | async}}%</div>
                 </div>
                <br>
-               Available Prescriptions are:-
-               <ol>
-                   <li *ngFor="let p of plist | async;let i = index"><a routerLink='/pview/{{p}}'> Prescription {{i+1}}</a></li>
+               <span style="color: white">Available Prescriptions are:-</span>
+               <ol style="line-height: 3.0">
+                   <li *ngFor="let p of plist | async;let i = index"><a routerLink='/pview/{{p}}'><span style="color: white"> Prescription {{i+1}} </span></a> <img (click)="remove(p)" class="delete" src="/assets/del.png"></li>
                </ol>
 </body>

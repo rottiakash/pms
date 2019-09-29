@@ -12,7 +12,8 @@ export class AppComponent{
   }
   email : any;
   password: any;
-  title = 'pms';
+  title = 'MSDC';
+  isCollapsed:any;
   user = null;
   show:any;
   login() {

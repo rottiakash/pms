@@ -66,3 +66,10 @@
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;
 }
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgb(0, 0, 255);
+}
+.navbar-dark .navbar-brand {
+  color:rgb(0, 0, 255);
+}

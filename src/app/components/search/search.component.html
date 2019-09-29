@@ -1,12 +1,13 @@
 <style>
     @import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Yeseva+One&display=swap');
     </style>
 <body>
 
-    <div class="text-center align-middle">Search Patients</div>
+    <div class="text-center align-middle" style="color: white">Search Patients</div>
     <div class="container">
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Enter Patient Name" [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
+        <input matInput placeholder="Enter Patient Name" (keydown.enter)="submit()" [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
       </mat-form-field>
       <a routerLink="/list/{{name}}"><button mat-raised-button color="primary" class="btn">Submit</button></a>
       </div>

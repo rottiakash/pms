@@ -1,5 +1,10 @@
 body{
-    background-color: grey;
+     background-image: url('/assets/Background.jpg');
+    background-color: #cccccc;
+    height: 100%;
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 *{box-sizing: border-box;}
 
@@ -69,5 +74,5 @@ mat-form-field {
     background-color: white;
   }
   span{
-  margin-right: 50px;
+  margin-right: 197px;
   }

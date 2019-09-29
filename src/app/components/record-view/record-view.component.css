@@ -1,9 +1,20 @@
 body{
-    background-color: grey;
+     background-image: url('/assets/Background.jpg');
+    background-color: #cccccc;
+    height: 100%;
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 img {
     width: 4vw;
     background: transparent;
 }
-a { color: inherit; }
+a { color: inherit;
+    margin-right: 10px; }
+
+.delete{
+    height: 2vw;
+    width: 2vw;
+}

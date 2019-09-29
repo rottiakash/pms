@@ -1,12 +1,17 @@
 body{
-    background-color: grey;
+     background-image: url('/assets/Background.jpg');
+    background-color: #cccccc;
+    height: 100%;
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
     
 }
 div{
     position: relative;
     top: 20%;
-    font-family: 'Anton', sans-serif;
-    font-size: 5vw;
+    font-family: 'Yeseva One', cursive;
+    font-size: 4vw;
 }
 .example-full-width {
     width: 80%;
@@ -18,4 +23,3 @@ div{
       position: relative;
       top: 25px;
   }
-  

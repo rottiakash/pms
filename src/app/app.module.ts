@@ -27,6 +27,7 @@ import { PviewComponent } from './components/pview/pview.component';
 import { XrayComponent } from './components/xray/xray.component';
 import { ReportComponent } from './components/report/report.component';
 import { MiscComponent } from './components/misc/misc.component';
+import { RedirectComponent } from './components/redirect/redirect.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { MiscComponent } from './components/misc/misc.component';
     PviewComponent,
     XrayComponent,
     ReportComponent,
-    MiscComponent
+    MiscComponent,
+    RedirectComponent
   ],
   imports: [
     BrowserModule,

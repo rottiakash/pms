@@ -37,7 +37,7 @@ export class DetailComponentComponent implements OnInit {
     this.address = this.route.snapshot.paramMap.get('addr');
     this.address = this.address.replace('*','(');
     this.address = this.address.replace('^',')');
-    this.http.get<PRecord[]>("http://localhost:5000/getRecord/"+this.id).subscribe(data=>{
+    this.http.get<PRecord[]>("https://rottiakash.pythonanywhere.com/getRecord/"+this.id).subscribe(data=>{
       this.dataSource=new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;                                                                                      
   });
@@ -53,19 +53,20 @@ export class DetailComponentComponent implements OnInit {
   }
   submit()
   {
-    console.log("Click");
-    this.http.get("http://localhost:5000/addRecord/"+this.id+"/"+this.title, {observe: 'response'})
+    //console.log("Click");
+    this.http.get("https://rottiakash.pythonanywhere.com/addRecord/"+this.id+"/"+this.title, {observe: 'response'})
     .subscribe(response => {
       window.alert("Added Successfully");
-      this.http.get<PRecord[]>("http://localhost:5000/getRecord/"+this.id).subscribe(data=>{
+      this.router.navigateByUrl('/redirect');
+      this.http.get<PRecord[]>("https://rottiakash.pythonanywhere.com/getRecord/"+this.id).subscribe(data=>{
       this.dataSource=new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator; 
                                                                                             
   });
-  this.dataSource.paginator = this.paginator;
       // You can access status:
-      console.log(response.status);
+      //console.log(response.status);
       // Or any other header:
-      console.log(response.headers.get('X-Custom-Header'));
+      //console.log(response.headers.get('X-Custom-Header'));
     }); 
   }
 

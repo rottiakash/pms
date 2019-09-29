@@ -16,7 +16,7 @@ export class PviewComponent implements OnInit {
 
   ngOnInit() {
     this.uid = this.route.snapshot.paramMap.get('uid');
-    console.log(this.uid);
+    //console.log(this.uid);
     this.imgURL = this.storage.ref(this.uid).getDownloadURL();
   }
 
