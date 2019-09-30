@@ -17,7 +17,7 @@ export class AppComponent{
   user = null;
   show:any;
   login() {
-    this.afAuth.auth.signInWithEmailAndPassword(this.email,this.password);
+    this.afAuth.auth.signInWithEmailAndPassword(this.email,this.password).catch(error => window.alert(error));
     this.user = this.afAuth.auth.currentUser.email;
   }
   logout() {
