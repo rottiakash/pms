@@ -27,9 +27,9 @@ export class AddComponent implements OnInit {
     var address:String = (this.addr);
     address = address.replace('/','*');
     //console.log(address)
-    //this.url="https://rottiakash.pythonanywhere.com/addPatient/"+this.name+"/"+this.email+"/"+this.phone+"/"+this.gender+"/"+dd+"-"+mmm+"-"+yyyy+"/"+this.addr;
+    //this.url="http://localhost:5000/addPatient/"+this.name+"/"+this.email+"/"+this.phone+"/"+this.gender+"/"+dd+"-"+mmm+"-"+yyyy+"/"+this.addr;
     //console.log(this.url);
-     this.http.get("https://rottiakash.pythonanywhere.com/addPatient/"+this.name+"/"+this.email+"/"+this.phone+"/"+this.gender+"/"+this.age+"/"+address, {observe: 'response'})
+     this.http.get("http://localhost:5000/addPatient/"+this.name+"/"+this.email+"/"+this.phone+"/"+this.gender+"/"+this.age+"/"+address, {observe: 'response'})
     .subscribe(response => {
       window.alert("Added Successfully");
       // You can access status:

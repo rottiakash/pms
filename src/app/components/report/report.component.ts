@@ -23,7 +23,7 @@ export class ReportComponent implements OnInit {
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.name = this.route.snapshot.paramMap.get('name');
-    this.xlist = this.http.get<String[]>("https://rottiakash.pythonanywhere.com/getReport/"+this.id)
+    this.xlist = this.http.get<String[]>("http://localhost:5000/getReport/"+this.id)
   }
   uploadFile(event) {
     this.per = true;
@@ -34,10 +34,10 @@ export class ReportComponent implements OnInit {
     task.snapshotChanges().pipe(
       finalize(() => {
       this.show = false;
-      this.http.get("https://rottiakash.pythonanywhere.com/addReport/"+this.id+"/"+filePath, {observe: 'response'})
+      this.http.get("http://localhost:5000/addReport/"+this.id+"/"+filePath, {observe: 'response'})
     .subscribe(response => {
       window.alert("Upload complete")
-      this.xlist = this.http.get<String[]>("https://rottiakash.pythonanywhere.com/getReport/"+this.id)
+      this.xlist = this.http.get<String[]>("http://localhost:5000/getReport/"+this.id)
       // You can access status:
       //console.log(response.status);
       // Or any other header:
@@ -63,12 +63,12 @@ export class ReportComponent implements OnInit {
  }
  remove(uid)
  {
-  this.http.get("https://rottiakash.pythonanywhere.com/remReport/"+uid, {observe: 'response'})
+  this.http.get("http://localhost:5000/remReport/"+uid, {observe: 'response'})
   .subscribe(response => {
     this.storage.ref(uid).getDownloadURL().subscribe(e =>{
       this.storage.storage.refFromURL(e).delete();
       window.alert("Removed Entry");
-      this.xlist = this.http.get<String[]>("https://rottiakash.pythonanywhere.com/getReport/"+this.id)
+      this.xlist = this.http.get<String[]>("http://localhost:5000/getReport/"+this.id)
     });
     // You can access status:
     //console.log(response.status);

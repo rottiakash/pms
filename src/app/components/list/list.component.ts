@@ -20,7 +20,7 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.name = this.route.snapshot.paramMap.get('name');
     //console.log(this.name)
-    this.http.get<Patient[]>("https://rottiakash.pythonanywhere.com/getp/"+this.name).subscribe(data =>{
+    this.http.get<Patient[]>("http://localhost:5000/getp/"+this.name).subscribe(data =>{
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
     });

@@ -32,7 +32,7 @@ export class RecordViewComponent implements OnInit {
     this.time  = this.route.snapshot.paramMap.get('time')
     this.title  = this.route.snapshot.paramMap.get('title')
     this.pname = this.route.snapshot.paramMap.get('pname')
-    this.plist = this.http.get<String[]>("https://rottiakash.pythonanywhere.com/getPresc/"+this.rid)
+    this.plist = this.http.get<String[]>("http://localhost:5000/getPresc/"+this.rid)
   }
   uploadFile(event) {
     this.per = true;
@@ -43,10 +43,10 @@ export class RecordViewComponent implements OnInit {
     task.snapshotChanges().pipe(
       finalize(() => {
       this.show = false;
-      this.http.get("https://rottiakash.pythonanywhere.com/addPresc/"+this.rid+"/"+filePath, {observe: 'response'})
+      this.http.get("http://localhost:5000/addPresc/"+this.rid+"/"+filePath, {observe: 'response'})
     .subscribe(response => {
       window.alert("Upload complete")
-      this.plist = this.http.get<String[]>("https://rottiakash.pythonanywhere.com/getPresc/"+this.rid)
+      this.plist = this.http.get<String[]>("http://localhost:5000/getPresc/"+this.rid)
       // You can access status:
       //console.log(response.status);
       // Or any other header:
@@ -73,12 +73,12 @@ export class RecordViewComponent implements OnInit {
 
  remove(uid)
  {
-  this.http.get("https://rottiakash.pythonanywhere.com/remPresc/"+uid, {observe: 'response'})
+  this.http.get("http://localhost:5000/remPresc/"+uid, {observe: 'response'})
   .subscribe(response => {
     this.storage.ref(uid).getDownloadURL().subscribe(e =>{
       this.storage.storage.refFromURL(e).delete();
       window.alert("Removed Entry");
-      this.plist = this.http.get<String[]>("https://rottiakash.pythonanywhere.com/getPresc/"+this.rid)
+      this.plist = this.http.get<String[]>("http://localhost:5000/getPresc/"+this.rid)
     });
     // You can access status:
     //console.log(response.status);
@@ -89,18 +89,18 @@ export class RecordViewComponent implements OnInit {
 
  removeRec()
  {
-  this.http.get<String[]>("https://rottiakash.pythonanywhere.com/getPresc/"+this.rid).subscribe(data => {
+  this.http.get<String[]>("http://localhost:5000/getPresc/"+this.rid).subscribe(data => {
     this.rlist = data;
     this.rlist.forEach(i => {
-      this.http.get("https://rottiakash.pythonanywhere.com/remPresc/"+i, {observe: 'response'})
+      this.http.get("http://localhost:5000/remPresc/"+i, {observe: 'response'})
   .subscribe(response => {
     this.storage.ref(String(i)).getDownloadURL().subscribe(e =>{
       this.storage.storage.refFromURL(e).delete();
-      this.plist = this.http.get<String[]>("https://rottiakash.pythonanywhere.com/getPresc/"+this.rid)
+      this.plist = this.http.get<String[]>("http://localhost:5000/getPresc/"+this.rid)
     });
   });
   });
-  this.http.get('https://rottiakash.pythonanywhere.com/remRec/'+this.rid, {observe: 'response'}).subscribe(response =>{window.alert("Record removed");this.router.navigateByUrl('/home');});
+  this.http.get('http://localhost:5000/remRec/'+this.rid, {observe: 'response'}).subscribe(response =>{window.alert("Record removed");this.router.navigateByUrl('/home');});
  });
 }
 }
