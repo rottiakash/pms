@@ -5,4 +5,5 @@ export interface PRecord
     tdate: String;
     title: String;
     ttime : String;
+    attachment:number;
 }

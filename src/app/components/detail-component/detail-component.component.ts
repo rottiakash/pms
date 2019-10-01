@@ -23,7 +23,7 @@ export class DetailComponentComponent implements OnInit {
   address: string;
   navLinks = ['Hello1']
   title:any;
-  displayedColumns: string[] = ['id', 'rid', 'tdate', 'title','ttime'];
+  displayedColumns: string[] = ['id', 'rid','title','attach', 'tdate','ttime'];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   constructor(private route:ActivatedRoute, private http:HttpClient,private router:Router) { }
  
