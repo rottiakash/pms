@@ -29,6 +29,7 @@ import { ReportComponent } from './components/report/report.component';
 import { MiscComponent } from './components/misc/misc.component';
 import { RedirectComponent } from './components/redirect/redirect.component';
 import { EditComponent } from './components/edit/edit.component';
+import { AboutComponent } from './components/about/about.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,8 @@ import { EditComponent } from './components/edit/edit.component';
     ReportComponent,
     MiscComponent,
     RedirectComponent,
-    EditComponent
+    EditComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

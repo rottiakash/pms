@@ -13,6 +13,7 @@ import { ReportComponent } from './components/report/report.component';
 import { MiscComponent } from './components/misc/misc.component';
 import { RedirectComponent } from './components/redirect/redirect.component';
 import { EditComponent } from './components/edit/edit.component';
+import { AboutComponent } from './components/about/about.component';
 
 const routes: Routes = [
   { path:"", redirectTo:"home", pathMatch:"full" },
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path:"report/:id/:name", component:ReportComponent, canActivate: [AngularFireAuthGuard]  },
   { path:"misc/:id/:name", component:MiscComponent, canActivate: [AngularFireAuthGuard]  },
   { path:"redirect", component:RedirectComponent, canActivate: [AngularFireAuthGuard]  },
-  { path:"edit/:id/:name/:email/:phone/:gender/:dob/:addr", component:EditComponent, canActivate: [AngularFireAuthGuard]  }
+  { path:"edit/:id/:name/:email/:phone/:gender/:dob/:addr", component:EditComponent, canActivate: [AngularFireAuthGuard]  },
+  { path:"about", component:AboutComponent },
 ];
 const redirectUnauthorizedToLogin = redirectUnauthorizedTo(['home']);
 @NgModule({
