@@ -82,4 +82,12 @@ export class DetailComponentComponent implements OnInit {
   {
     this.router.navigateByUrl('/misc/'+this.id+"/"+this.name);
   }
+  edit()
+  {
+    var address=this.address;
+    address = address.replace('(','*');
+    address = address.replace(')','^');
+    address = address.replace('/','%2F');
+    this.router.navigateByUrl('/edit/'+this.id+'/'+this.name+'/'+this.email+'/'+this.phone+'/'+this.gender+'/'+this.dob+"/"+address);
+  }
 }

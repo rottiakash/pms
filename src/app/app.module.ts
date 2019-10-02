@@ -28,6 +28,7 @@ import { XrayComponent } from './components/xray/xray.component';
 import { ReportComponent } from './components/report/report.component';
 import { MiscComponent } from './components/misc/misc.component';
 import { RedirectComponent } from './components/redirect/redirect.component';
+import { EditComponent } from './components/edit/edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { RedirectComponent } from './components/redirect/redirect.component';
     XrayComponent,
     ReportComponent,
     MiscComponent,
-    RedirectComponent
+    RedirectComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
