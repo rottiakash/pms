@@ -15,6 +15,7 @@ export class EditComponent implements OnInit {
   gender:any;
   age:any;
   addr:any;
+  url:string;
   constructor(private route:ActivatedRoute,private http:HttpClient,private router:Router) { }
 
   ngOnInit() {
@@ -40,7 +41,13 @@ export class EditComponent implements OnInit {
     //console.log(address)
     //this.url="http://localhost:5000/addPatient/"+this.name+"/"+this.email+"/"+this.phone+"/"+this.gender+"/"+dd+"-"+mmm+"-"+yyyy+"/"+this.addr;
     //console.log(this.url);
-     this.http.get("http://localhost:5000/edit/"+this.id+"/"+this.name+"/"+this.email+"/"+this.phone+"/"+this.gender+"/"+this.age+"/"+address, {observe: 'response'})
+    this.url = "http://localhost:5000/edit/"+this.id+"/"+this.name+"/"+this.email+"/"+this.phone+"/"+this.gender+"/"+this.age+"/"+address;
+    if(this.phone = "NaN")
+    {
+      this.url = "http://localhost:5000/editwop/"+this.id+"/"+this.name+"/"+this.email+"/"+this.phone+"/"+this.gender+"/"+this.age+"/"+address;
+
+    }
+     this.http.get(this.url, {observe: 'response'})
     .subscribe(response => {
       window.alert("Edited Successfully");
       this.router.navigateByUrl('/home');
