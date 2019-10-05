@@ -10,12 +10,26 @@
                                                                     Date: {{date}}<br>
                                                                     Time: {{time}}<br>
     </div>
+    <div class="container align-centre" style="position: relative; bottom: 150px">
+        <div class="form-popup align-centre" id="myForm" *ngIf="showe">
+                <form action="/action_page.php" class="form-container">
+                  <h1>Edit Record</h1>
+              
+                  <label for="Title"><b>Treatment Description</b></label>
+                  <input type="text" placeholder="Enter Description" name="title" [(ngModel)]="title" [ngModelOptions]="{standalone: true}" required>
+                  <button type="submit" class="btn" (click)="edit(); showe = false">Edit</button>
+                  <button type="submit" class="btn cancel" (click)="showe= false">Close</button>
+                </form>
+              </div></div>
     <div *ngIf="!show" class="container align-middle" style="position: relative; max-width: 200px; 
               font-size: 1vw;">
                <img src="assets/add.png" (click)="show = true" *ngIf="!show"> <span (click)="show = true" style="color: white">Add Prescription</span></div><br>
                <div *ngIf="!show" class="container align-middle" style="position: relative; max-width: 200px; 
                font-size: 1vw;">
-                <img src="assets/del.png" (click)="removeRec()" *ngIf="!show"> <span (click)=" removeRec()" style="color: white"> Delete Record</span></div>
+                <img src="assets/del.png" (click)="removeRec()" *ngIf="!show"> <span (click)=" removeRec()" style="color: white"> Delete Record</span></div><br>
+                <div *ngIf="!show" class="container align-middle" style="position: relative; max-width: 200px; 
+               font-size: 1vw;">
+                <img src="assets/edit.png" (click)="showe = true" *ngIf="!show"> <span (click)=" showe = true" style="color: white"> Edit Record</span></div>
                <br>
                <div *ngIf="show" class="container align-middle" style="position: relative; max-width: 200px; 
                font-size: 1vw;">

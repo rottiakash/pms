@@ -19,6 +19,7 @@ export class RecordViewComponent implements OnInit {
   pname: String;
   i = 1;
   show:any;
+  showe:any;
   plist:Observable<String[]>
   rlist:String[];
   per = false
@@ -102,5 +103,10 @@ export class RecordViewComponent implements OnInit {
   });
   this.http.get('http://localhost:5000/remRec/'+this.rid, {observe: 'response'}).subscribe(response =>{window.alert("Record removed");this.router.navigateByUrl('/home');});
  });
+}
+
+edit()
+{
+  this.http.get('http://localhost:5000/editRec/'+this.rid+'/'+this.title, {observe: 'response'}).subscribe(response => window.alert("Edited Successfully"));
 }
 }
