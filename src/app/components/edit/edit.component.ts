@@ -42,7 +42,7 @@ export class EditComponent implements OnInit {
     //this.url="http://localhost:5000/addPatient/"+this.name+"/"+this.email+"/"+this.phone+"/"+this.gender+"/"+dd+"-"+mmm+"-"+yyyy+"/"+this.addr;
     //console.log(this.url);
     this.url = "http://localhost:5000/edit/"+this.id+"/"+this.name+"/"+this.email+"/"+this.phone+"/"+this.gender+"/"+this.age+"/"+address;
-    if(this.phone = "NaN")
+    if(this.phone == "NaN")
     {
       this.url = "http://localhost:5000/editwop/"+this.id+"/"+this.name+"/"+this.email+"/"+this.phone+"/"+this.gender+"/"+this.age+"/"+address;
 
