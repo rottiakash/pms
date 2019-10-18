@@ -10,5 +10,10 @@
         <input matInput placeholder="Enter Patient Name" (keydown.enter)="submit()" [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
       </mat-form-field>
       <a routerLink="/list/{{name}}"><button mat-raised-button color="primary" class="btn">Submit</button></a>
+      <br>
       </div>
+      <div class="text-center align-middle" style="position: relative; right: 5%;">
+        <a class="text-center align-middle" routerLink="/list/m"><button mat-raised-button color="primary" class="btn">List all</button></a>
+      </div>
+      
 </body>
