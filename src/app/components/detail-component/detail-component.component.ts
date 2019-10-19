@@ -49,7 +49,9 @@ export class DetailComponentComponent implements OnInit {
   }
   selectRow(row)
   {
-    this.router.navigateByUrl('/recordView/'+row.rid+'/'+row.tdate+'/'+row.ttime+'/'+row.title+'/'+this.name);
+    var title = row.title.replace('(','%28');
+    title = title.replace(')','%29');
+    this.router.navigateByUrl('/recordView/'+row.rid+'/'+row.tdate+'/'+row.ttime+'/'+title+'/'+this.name);
   }
   submit()
   {
