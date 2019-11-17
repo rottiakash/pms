@@ -9,7 +9,7 @@
 
     </div>
     <div *ngIf="!show" class="container align-middle" style="position: relative; max-width: 200px; 
-    font-size: 1vw;">
+    font-size: 1vw;cursor: pointer;">
     <img src="assets/add.png" (click)="show = true" *ngIf="!show"> <span style="color: white" (click)="show = true"> Add Report </span></div>
     <br>
     <div *ngIf="show" class="container align-middle" style="position: relative; max-width: 200px; 
@@ -18,6 +18,6 @@
                 <div *ngIf="per">Uploaded: {{ uploadPercent | async}}%</div>
                 </div>
                 <span style="color: white">Available Reports are:- </span>
-               <ol>
+               <ol style="cursor: pointer;">
                    <li *ngFor="let x of xlist | async;let i = index"><a routerLink='/pview/{{x}}'> <span style="color: white"> Report {{i+1}}</span></a><img (click)="remove(x)" class="delete" src="/assets/del.png"></li>
                </ol>

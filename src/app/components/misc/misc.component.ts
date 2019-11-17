@@ -27,7 +27,7 @@ export class MiscComponent implements OnInit {
   uploadFile(event) {
     this.per = true;
     const file = event.target.files[0];
-    const filePath = this.makeid(20);
+    const filePath = this.makeid(20)+"--test";  //dev file
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
     task.snapshotChanges().pipe(

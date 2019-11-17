@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RecordViewComponent } from './record-view.component';
+import { TreatmentViewComponent } from './treatment-view.component';
 
-describe('RecordViewComponent', () => {
-  let component: RecordViewComponent;
-  let fixture: ComponentFixture<RecordViewComponent>;
+describe('TreatmentViewComponent', () => {
+  let component: TreatmentViewComponent;
+  let fixture: ComponentFixture<TreatmentViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RecordViewComponent ]
+      declarations: [ TreatmentViewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RecordViewComponent);
+    fixture = TestBed.createComponent(TreatmentViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

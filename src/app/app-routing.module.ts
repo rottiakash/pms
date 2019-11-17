@@ -6,11 +6,11 @@ import { AddComponent } from './components/add/add.component';
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { ListComponent } from './components/list/list.component';
 import { DetailComponentComponent } from './components/detail-component/detail-component.component';
-import { RecordViewComponent } from './components/record-view/record-view.component';
+import { TreatmentViewComponent } from './components/treatment-view/treatment-view.component';
 import { PviewComponent } from './components/pview/pview.component';
 import { XrayComponent } from './components/xray/xray.component';
 import { ReportComponent } from './components/report/report.component';
-import { MiscComponent } from './components/misc/misc.component';
+import { MiscComponent } from './components/misc/misc.component'; 
 import { RedirectComponent } from './components/redirect/redirect.component';
 import { EditComponent } from './components/edit/edit.component';
 import { AboutComponent } from './components/about/about.component';
@@ -22,7 +22,7 @@ const routes: Routes = [
   { path:"add", component:AddComponent, canActivate: [AngularFireAuthGuard]  },
   { path:"list/:name", component:ListComponent, canActivate: [AngularFireAuthGuard]  },
   { path:"detail/:id/:name/:email/:phone/:gender/:dob/:addr", component:DetailComponentComponent, canActivate: [AngularFireAuthGuard]  },
-  { path:"recordView/:rid/:date/:time/:title/:pname", component:RecordViewComponent, canActivate: [AngularFireAuthGuard]  },
+  { path:"treatmentView/:tid/:date/:time/:title/:pname", component:TreatmentViewComponent, canActivate: [AngularFireAuthGuard]  },
   { path:"pview/:uid", component:PviewComponent, canActivate: [AngularFireAuthGuard]  },
   { path:"xray/:id/:name", component:XrayComponent, canActivate: [AngularFireAuthGuard]  },
   { path:"report/:id/:name", component:ReportComponent, canActivate: [AngularFireAuthGuard]  },

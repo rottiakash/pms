@@ -1,7 +1,7 @@
-export interface PRecord
+export interface PTreatment
 {
     id: number;
-    rid: number;
+    tid: number;
     tdate: String;
     title: String;
     ttime : String;

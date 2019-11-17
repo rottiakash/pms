@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Patient } from 'src/app/Patient';
 import { HttpClient } from '@angular/common/http';
-import { PRecord } from 'src/app/PRecord';
+import { PTreatment } from 'src/app/PTreatment';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 
 @Component({
@@ -23,7 +23,7 @@ export class DetailComponentComponent implements OnInit {
   address: string;
   navLinks = ['Hello1']
   title:any;
-  displayedColumns: string[] = ['id', 'rid','title','attach', 'tdate','ttime'];
+  displayedColumns: string[] = ['id', 'tid','title','attach', 'tdate','ttime'];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   constructor(private route:ActivatedRoute, private http:HttpClient,private router:Router) { }
  
@@ -37,7 +37,7 @@ export class DetailComponentComponent implements OnInit {
     this.address = this.route.snapshot.paramMap.get('addr');
     this.address = this.address.replace('*','(');
     this.address = this.address.replace('^',')');
-    this.http.get<PRecord[]>("http://localhost:5000/getRecord/"+this.id).subscribe(data=>{
+    this.http.get<PTreatment[]>("http://localhost:5000/getTreatment/"+this.id).subscribe(data=>{
       this.dataSource=new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;                                                                                      
   });
@@ -51,16 +51,16 @@ export class DetailComponentComponent implements OnInit {
   {
     var title = row.title.replace('(','%28');
     title = title.replace(')','%29');
-    this.router.navigateByUrl('/recordView/'+row.rid+'/'+row.tdate+'/'+row.ttime+'/'+title+'/'+this.name);
+    this.router.navigateByUrl('/treatmentView/'+row.tid+'/'+row.tdate+'/'+row.ttime+'/'+title+'/'+this.name);
   }
   submit()
   {
     //console.log("Click");
-    this.http.get("http://localhost:5000/addRecord/"+this.id+"/"+this.title, {observe: 'response'})
+    this.http.get("http://localhost:5000/addTreatment/"+this.id+"/"+this.title, {observe: 'response'})
     .subscribe(response => {
       window.alert("Added Successfully");
       this.router.navigateByUrl('/redirect');
-      this.http.get<PRecord[]>("http://localhost:5000/getRecord/"+this.id).subscribe(data=>{
+      this.http.get<PTreatment[]>("http://localhost:5000/getTreatment/"+this.id).subscribe(data=>{
       this.dataSource=new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator; 
                                                                                             

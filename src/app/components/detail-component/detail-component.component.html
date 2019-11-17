@@ -19,23 +19,23 @@
         <div class="container align-centre" style="position: relative; bottom: 150px">
         <div class="form-popup align-centre" id="myForm" *ngIf="show">
                 <form action="/action_page.php" class="form-container">
-                  <h1>Add Record</h1>
+                  <h1>Add Treatment</h1>
               
                   <label for="Title"><b>Treatment Description</b></label>
-                  <input type="text" placeholder="Enter Description" name="title" [(ngModel)]="title" [ngModelOptions]="{standalone: true}" required>
+                  <input type="text" placeholder="Enter Description" name="title" [(ngModel)]="title" [ngModelOptions]="{standalone: true} " (keydown.enter)="submit(); show = false" required>
                   <button type="submit" class="btn" (click)="submit(); show = false">Add</button>
                   <button type="submit" class="btn cancel" (click)="show = false">Close</button>
                 </form>
               </div></div>
               <div *ngIf="!show" class="container align-middle" style="position: relative; max-width: 100%; 
-              font-size: 1vw;">
-              <img src="assets/add.png" (click)="show = true" *ngIf="!show"> <span style="color: white" (click)="show = true"> Add Record </span>   
+              font-size: 1vw;cursor: pointer;">
+              <img src="assets/add.png" (click)="show = true" *ngIf="!show"> <span style="color: white" (click)="show = true"> Add Treatment </span>   
               <img src="assets/xray.png" (click)="xray()" *ngIf="!show"> <span style="color: white" (click)="xray()"> View X-Rays </span>   
               <img src="assets/report.png" (click)="report()" *ngIf="!show"> <span style="color: white" (click)="report()"> View Reports </span>   
                <img src="assets/misc.png" (click)="misc()" *ngIf="!show"> <span style="color: white" (click)="misc()"> View Misc.</span>
                <img src="assets/edit.png" (click)="edit()" *ngIf="!show"> <span style="color: white" (click)="edit()">Edit Details</span></div>
                <br>    
-               <div class="record mat-elevation-z8">
+               <div class="treatment mat-elevation-z8">
                <mat-form-field>
                         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
                       </mat-form-field>
@@ -48,38 +48,38 @@
                         <!-- ID Column -->
                         <ng-container matColumnDef="id">
                           <th mat-header-cell *matHeaderCellDef> ID </th>
-                          <td mat-cell *matCellDef="let record"> {{record.id}} </td>
+                          <td mat-cell *matCellDef="let treatment"> {{treatment.id}} </td>
                         </ng-container>
                       
                         <!-- RID Column -->
-                        <ng-container matColumnDef="rid">
-                          <th mat-header-cell *matHeaderCellDef> Record ID </th>
-                          <td mat-cell *matCellDef="let record"> {{record.rid}} </td>
+                        <ng-container matColumnDef="tid">
+                          <th mat-header-cell *matHeaderCellDef> Treatment ID </th>
+                          <td mat-cell *matCellDef="let treatment"> {{treatment.tid}} </td>
                         </ng-container>
                       
                       
                         <!-- Title Column -->
                         <ng-container matColumnDef="title">
                           <th mat-header-cell *matHeaderCellDef> Title </th>
-                          <td mat-cell *matCellDef="let record"> {{record.title}} </td>
+                          <td mat-cell *matCellDef="let treatment"> {{treatment.title}} </td>
                         </ng-container>
                         <!-- Attachment Column -->
                         <ng-container matColumnDef="attach">
                           <th mat-header-cell *matHeaderCellDef> Attachment </th>
-                          <td mat-cell *matCellDef="let record"> <img *ngIf="record.attachment == 1" style="height: 1.5vw; width:2.3vw" src="assets/misc.png"> </td>
+                          <td mat-cell *matCellDef="let treatment"> <img *ngIf="treatment.attachment == 1" style="height: 1.5vw; width:2.3vw" src="assets/misc.png"> </td>
                         </ng-container>
                          <!-- Tdate Column -->
                          <ng-container matColumnDef="tdate">
                           <th mat-header-cell *matHeaderCellDef> Treatment Date </th>
-                          <td mat-cell *matCellDef="let record"> {{record.tdate}} </td>
+                          <td mat-cell *matCellDef="let treatment"> {{treatment.tdate}} </td>
                         </ng-container>
                         <!-- Ttime Column -->
                         <ng-container matColumnDef="ttime">
                                         <th mat-header-cell *matHeaderCellDef> Treatment Time </th>
-                                        <td mat-cell *matCellDef="let record"> {{record.ttime}} </td>
+                                        <td mat-cell *matCellDef="let treatment"> {{treatment.ttime}} </td>
                                       </ng-container>
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)" style="cursor: pointer;"></tr>
                       </table>
                       
                </div>

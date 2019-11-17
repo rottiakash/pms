@@ -4,7 +4,7 @@
     
 <body>
             
-    <div style="color: white; font-size: 1.2vw; line-height: 2.0">Record ID: {{rid}}<br>
+    <div style="color: white; font-size: 1.2vw; line-height: 2.0">Treatment ID: {{tid}}<br>
                                                                     Patient Name: {{pname}}<br>
                                                                     Title: {{title}}<br>
                                                                     Date: {{date}}<br>
@@ -13,23 +13,23 @@
     <div class="container align-centre" style="position: relative; bottom: 150px">
         <div class="form-popup align-centre" id="myForm" *ngIf="showe">
                 <form action="/action_page.php" class="form-container">
-                  <h1>Edit Record</h1>
+                  <h1>Edit Treatment</h1>
               
                   <label for="Title"><b>Treatment Description</b></label>
-                  <input type="text" placeholder="Enter Description" name="title" [(ngModel)]="title" [ngModelOptions]="{standalone: true}" required>
+                  <input type="text" placeholder="Enter Description" name="title" [(ngModel)]="title" [ngModelOptions]="{standalone: true}" (keydown.enter)="edit(); showe = false" required>
                   <button type="submit" class="btn" (click)="edit(); showe = false">Edit</button>
                   <button type="submit" class="btn cancel" (click)="showe= false">Close</button>
                 </form>
               </div></div>
     <div *ngIf="!show" class="container align-middle" style="position: relative; max-width: 200px; 
-              font-size: 1vw;">
+              font-size: 1vw;cursor: pointer;">
                <img src="assets/add.png" (click)="show = true" *ngIf="!show"> <span (click)="show = true" style="color: white">Add Prescription</span></div><br>
                <div *ngIf="!show" class="container align-middle" style="position: relative; max-width: 200px; 
-               font-size: 1vw;">
-                <img src="assets/del.png" (click)="removeRec()" *ngIf="!show"> <span (click)=" removeRec()" style="color: white"> Delete Record</span></div><br>
+               font-size: 1vw;cursor: pointer;">
+                <img src="assets/del.png" (click)="removeRec()" *ngIf="!show"> <span (click)=" removeRec()" style="color: white"> Delete Treatment</span></div><br>
                 <div *ngIf="!show" class="container align-middle" style="position: relative; max-width: 200px; 
-               font-size: 1vw;">
-                <img src="assets/edit.png" (click)="showe = true" *ngIf="!show"> <span (click)=" showe = true" style="color: white"> Edit Record</span></div>
+               font-size: 1vw;cursor: pointer;">
+                <img src="assets/edit.png" (click)="showe = true" *ngIf="!show"> <span (click)=" showe = true" style="color: white"> Edit Treatment</span></div>
                <br>
                <div *ngIf="show" class="container align-middle" style="position: relative; max-width: 200px; 
                font-size: 1vw;">
@@ -38,7 +38,7 @@
                 </div>
                <br>
                <span style="color: white">Available Prescriptions are:-</span>
-               <ol style="line-height: 3.0">
+               <ol style="line-height: 3.0;cursor: pointer;">
                    <li *ngFor="let p of plist | async;let i = index"><a routerLink='/pview/{{p}}'><span style="color: white"> Prescription {{i+1}} </span></a> <img (click)="remove(p)" class="delete" src="/assets/del.png"></li>
                </ol>
 </body>
