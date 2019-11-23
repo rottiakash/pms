@@ -22,7 +22,7 @@
         <a class="nav-link" [routerLink]="['search']">Search Patients</a>
       </li>
       <li *ngIf='afAuth.user | async;' class="nav-item">
-        <a class="nav-link" routerLink="/list/m">List Patients</a>
+        <a class="nav-link" routerLink="/list/null">List Patients</a>
       </li>
       <li *ngIf='afAuth.user | async;' class="nav-item">
         <a class="nav-link" [routerLink]="['add']">Add Patient</a>

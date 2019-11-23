@@ -19,8 +19,11 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.name = this.route.snapshot.paramMap.get('name');
-    //console.log(this.name)
-    this.http.get<Patient[]>("http://localhost:5000/getp/"+this.name).subscribe(data =>{
+    if(this.name!="null")
+      var url = "http://localhost:5000/getp/"+this.name;
+    else
+    var url = "http://localhost:5000/listall";
+     this.http.get<Patient[]>(url).subscribe(data =>{
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
     });
