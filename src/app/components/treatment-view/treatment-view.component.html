@@ -21,17 +21,17 @@
                   <button type="submit" class="btn cancel" (click)="showe= false">Close</button>
                 </form>
               </div></div>
-    <div *ngIf="!show" class="container align-middle" style="position: relative; max-width: 200px; 
+    <div *ngIf="!show" class="container align-middle" style="position: relative; max-width: 400px; 
               font-size: 1vw;cursor: pointer;">
-               <img src="assets/add.png" (click)="show = true" *ngIf="!show"> <span (click)="show = true" style="color: white">Add Prescription</span></div><br>
-               <div *ngIf="!show" class="container align-middle" style="position: relative; max-width: 200px; 
+               <img src="assets/add.png" (click)="show = true" *ngIf="!show"> <span (click)="show = true" style="color: white"> Add Prescription</span></div><br>
+               <div *ngIf="!show" class="container align-middle" style="position: relative; max-width: 400px; 
                font-size: 1vw;cursor: pointer;">
                 <img src="assets/del.png" (click)="removeRec()" *ngIf="!show"> <span (click)=" removeRec()" style="color: white"> Delete Treatment</span></div><br>
-                <div *ngIf="!show" class="container align-middle" style="position: relative; max-width: 200px; 
+                <div *ngIf="!show" class="container align-middle" style="position: relative; max-width: 400px; 
                font-size: 1vw;cursor: pointer;">
                 <img src="assets/edit.png" (click)="showe = true" *ngIf="!show"> <span (click)=" showe = true" style="color: white"> Edit Treatment</span></div>
                <br>
-               <div *ngIf="show" class="container align-middle" style="position: relative; max-width: 200px; 
+               <div *ngIf="show" class="container align-middle" style="position: relative; max-width: 400px; 
                font-size: 1vw;">
                <input type="file" (change)="uploadFile($event)"/>
                 <div *ngIf="per">Uploaded: {{ uploadPercent | async}}%</div>

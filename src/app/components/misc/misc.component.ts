@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-misc',
   templateUrl: './misc.component.html',
@@ -17,7 +18,7 @@ export class MiscComponent implements OnInit {
   per = false;
   xlist: Observable<String[]>
   uploadPercent:Observable<number>;
-  constructor(private route:ActivatedRoute,private http:HttpClient,private storage:AngularFireStorage) { }
+  constructor(private route:ActivatedRoute,private http:HttpClient,private storage:AngularFireStorage,private snackbar:MatSnackBar) { }
 
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
@@ -27,7 +28,7 @@ export class MiscComponent implements OnInit {
   uploadFile(event) {
     this.per = true;
     const file = event.target.files[0];
-    const filePath = this.makeid(20)+"--test";  //dev file
+    const filePath = this.makeid(20);  //dev file
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
     task.snapshotChanges().pipe(
@@ -35,7 +36,9 @@ export class MiscComponent implements OnInit {
       this.show = false;
       this.http.get("http://localhost:5000/addMisc/"+this.id+"/"+filePath, {observe: 'response'})
     .subscribe(response => {
-      window.alert("Upload complete")
+      this.snackbar.open('Upload Complete', 'Dismiss', {
+        duration: 3000
+      });
       this.xlist = this.http.get<String[]>("http://localhost:5000/getMisc/"+this.id)
       // You can access status:
       //console.log(response.status);
@@ -66,7 +69,9 @@ export class MiscComponent implements OnInit {
   .subscribe(response => {
     this.storage.ref(uid).getDownloadURL().subscribe(e =>{
       this.storage.storage.refFromURL(e).delete();
-      window.alert("Removed Entry");
+      this.snackbar.open('Removed Entry', 'Dismiss', {
+        duration: 3000
+      });
       this.xlist = this.http.get<String[]>("http://localhost:5000/getMisc/"+this.id)
     });
     // You can access status:

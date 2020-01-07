@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Router} from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
@@ -15,7 +16,7 @@ export class AddComponent implements OnInit {
   flag= true;
   addr:any;
   url:string;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private snackbar:MatSnackBar,private router:Router) {}
 
   ngOnInit() {
   }
@@ -54,7 +55,10 @@ export class AddComponent implements OnInit {
     if(this.flag)
       this.http.get(this.url, {observe: 'response'})
       .subscribe(response => {
-        window.alert("Added Successfully");
+        this.snackbar.open('Patient Added', 'Dismiss', {
+          duration: 3000
+        });
+        this.router.navigateByUrl("/home");
         // You can access status:
         //console.log(response.status);
         // Or any other header:

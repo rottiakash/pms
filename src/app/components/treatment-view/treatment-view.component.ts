@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { finalize } from "rxjs/operators";
 import { AngularFireStorage } from '@angular/fire/storage';
 import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-treatment-view',
@@ -25,7 +26,7 @@ export class TreatmentViewComponent implements OnInit {
   per = false
   uploadPercent:Observable<number>;
   downloadURL:Observable<String>;
-  constructor(private route:ActivatedRoute,private storage:AngularFireStorage, private http:HttpClient,private router:Router) { }
+  constructor(private route:ActivatedRoute,private storage:AngularFireStorage, private http:HttpClient,private router:Router,private snackbar:MatSnackBar) { }
 
   ngOnInit() {
     this.tid  = Number(this.route.snapshot.paramMap.get('tid'))
@@ -38,7 +39,7 @@ export class TreatmentViewComponent implements OnInit {
   uploadFile(event) {
     this.per = true;
     const file = event.target.files[0];
-    const filePath = this.makeid(20)+"--test"; //dev file
+    const filePath = this.makeid(20); //dev file
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
     task.snapshotChanges().pipe(
@@ -46,7 +47,9 @@ export class TreatmentViewComponent implements OnInit {
       this.show = false;
       this.http.get("http://localhost:5000/addPresc/"+this.tid+"/"+filePath, {observe: 'response'})
     .subscribe(response => {
-      window.alert("Upload complete")
+      this.snackbar.open('Upload Complete', 'Dismiss', {
+        duration: 3000
+      });
       this.plist = this.http.get<String[]>("http://localhost:5000/getPresc/"+this.tid)
       // You can access status:
       //console.log(response.status);
@@ -78,7 +81,9 @@ export class TreatmentViewComponent implements OnInit {
   .subscribe(response => {
     this.storage.ref(uid).getDownloadURL().subscribe(e =>{
       this.storage.storage.refFromURL(e).delete();
-      window.alert("Removed Entry");
+      this.snackbar.open('Removed Entry', 'Dismiss', {
+        duration: 3000
+      });
       this.plist = this.http.get<String[]>("http://localhost:5000/getPresc/"+this.tid)
     });
     // You can access status:
@@ -101,12 +106,17 @@ export class TreatmentViewComponent implements OnInit {
     });
   });
   });
-  this.http.get('http://localhost:5000/remRec/'+this.tid, {observe: 'response'}).subscribe(response =>{window.alert("Treatment removed");this.router.navigateByUrl('/home');});
+  this.http.get('http://localhost:5000/remRec/'+this.tid, {observe: 'response'}).subscribe(response =>{this.snackbar.open('Treatment Deleted', 'Dismiss', {
+    duration: 3000
+  });
+  this.router.navigateByUrl('/home');});
  });
 }
 
 edit()
 {
-  this.http.get('http://localhost:5000/editTreat/'+this.tid+'/'+this.title, {observe: 'response'}).subscribe(response => window.alert("Edited Successfully"));
+  this.http.get('http://localhost:5000/editTreat/'+this.tid+'/'+this.title, {observe: 'response'}).subscribe(response => this.snackbar.open('Edited Successfully', 'Dismiss', {
+    duration: 3000
+  }));
 }
 }

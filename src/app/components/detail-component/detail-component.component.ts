@@ -4,6 +4,7 @@ import { Patient } from 'src/app/Patient';
 import { HttpClient } from '@angular/common/http';
 import { PTreatment } from 'src/app/PTreatment';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar'
 
 @Component({
   selector: 'app-detail-component',
@@ -25,7 +26,7 @@ export class DetailComponentComponent implements OnInit {
   title:any;
   displayedColumns: string[] = ['id', 'tid','title','attach', 'tdate','ttime'];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  constructor(private route:ActivatedRoute, private http:HttpClient,private router:Router) { }
+  constructor(private route:ActivatedRoute, private http:HttpClient,private router:Router,private snackbar:MatSnackBar) { }
  
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
@@ -58,8 +59,9 @@ export class DetailComponentComponent implements OnInit {
     //console.log("Click");
     this.http.get("http://localhost:5000/addTreatment/"+this.id+"/"+this.title, {observe: 'response'})
     .subscribe(response => {
-      window.alert("Added Successfully");
-      this.router.navigateByUrl('/redirect');
+      this.snackbar.open('Added Treatment', 'Dismiss', {
+        duration: 3000
+      });
       this.http.get<PTreatment[]>("http://localhost:5000/getTreatment/"+this.id).subscribe(data=>{
       this.dataSource=new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator; 

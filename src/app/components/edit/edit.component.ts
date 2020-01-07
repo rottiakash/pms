@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-edit',
@@ -16,7 +17,7 @@ export class EditComponent implements OnInit {
   age:any;
   addr:any;
   url:string;
-  constructor(private route:ActivatedRoute,private http:HttpClient,private router:Router) { }
+  constructor(private route:ActivatedRoute,private http:HttpClient,private router:Router,private snackbar:MatSnackBar) { }
 
   ngOnInit() {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
@@ -34,7 +35,7 @@ export class EditComponent implements OnInit {
   {
        //console.log(this.name);
     //console.log(this.email);
-    //console.log(this.phone);
+    console.log(this.phone);
     //console.log(this.gender);
     var address:String = (this.addr);
     address = address.replace('/','*');
@@ -42,15 +43,17 @@ export class EditComponent implements OnInit {
     //this.url="http://localhost:5000/addPatient/"+this.name+"/"+this.email+"/"+this.phone+"/"+this.gender+"/"+dd+"-"+mmm+"-"+yyyy+"/"+this.addr;
     //console.log(this.url);
     this.url = "http://localhost:5000/edit/"+this.id+"/"+this.name+"/"+this.email+"/"+this.phone+"/"+this.gender+"/"+this.age+"/"+address;
-    if(this.phone == "NaN")
+    if(this.phone=="NaN")
     {
       this.url = "http://localhost:5000/editwop/"+this.id+"/"+this.name+"/"+this.email+"/"+this.phone+"/"+this.gender+"/"+this.age+"/"+address;
 
     }
      this.http.get(this.url, {observe: 'response'})
     .subscribe(response => {
-      window.alert("Edited Successfully");
-      this.router.navigateByUrl('/home');
+      this.snackbar.open('Patient Edited', 'Dismiss', {
+        duration: 3000
+      });
+      this.router.navigateByUrl("/home");
       // You can access status:
       //console.log(response.status);
       // Or any other header:
