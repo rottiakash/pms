@@ -62,15 +62,6 @@ import { AboutComponent } from './components/about/about.component';
     MatDatepickerModule,
     MatNativeDateModule,
     FormsModule,
-    NgxAuthFirebaseUIModule.forRoot({
-      apiKey: "AIzaSyCLQr5E0pntXtGPRRqWz4tA8M6ftmzKVj4",
-      authDomain: "patient-medical-system.firebaseapp.com",
-      databaseURL: "https://patient-medical-system.firebaseio.com",
-      projectId: "patient-medical-system",
-      storageBucket: "",
-      messagingSenderId: "64466382438",
-      appId: "1:64466382438:web:c44968deadbb59d33307a7"
-    })
   ],
   providers: [AngularFireAuthModule,AngularFireAuthGuard,{provide: MAT_DATE_LOCALE, useValue: 'en-GB'},commService,{ provide: StorageBucket, useValue: 'patient-medical-system.appspot.com' }],
   bootstrap: [AppComponent]
