@@ -26,7 +26,7 @@
     "@ng-bootstrap/ng-bootstrap": "^5.1.1",
     "angular-cli-ghpages": "^0.6.0",
     "bootstrap": "^4.0.0-beta",
-    "firebase": "^6.6.2",
+    "firebase": "^7.11.0",
     "hammerjs": "^2.0.8",
     "jquery": "^3.4.1",
     "ngx-auth-firebaseui": "^3.4.1",

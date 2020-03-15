@@ -33,7 +33,10 @@
               <img src="assets/xray.png" (click)="xray()" *ngIf="!show"> <span style="color: white" (click)="xray()"> View X-Rays </span>   
               <img src="assets/report.png" (click)="report()" *ngIf="!show"> <span style="color: white" (click)="report()"> View Reports </span>   
                <img src="assets/misc.png" (click)="misc()" *ngIf="!show"> <span style="color: white" (click)="misc()"> View Misc.</span>
-               <img src="assets/edit.png" (click)="edit()" *ngIf="!show"> <span style="color: white" (click)="edit()">Edit Details</span></div>
+               <img src="assets/edit.png" (click)="edit()" *ngIf="!show"> <span style="color: white" (click)="edit()">Edit Details</span>
+               <img style="padding-top:10px;" src="assets/del.png" (click)="rem()" *ngIf="!show"> <span style="color: white;padding-top: 10px;" (click)="rem()">Remove</span>
+              </div>
+               
                <br>    
                <div class="treatment mat-elevation-z8">
                <mat-form-field>

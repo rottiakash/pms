@@ -94,4 +94,15 @@ export class DetailComponentComponent implements OnInit {
     address = address.replace('/','%2F');
     this.router.navigateByUrl('/edit/'+this.id+'/'+this.name+'/'+this.email+'/'+this.phone+'/'+this.gender+'/'+this.dob+"/"+address);
   }
+
+  rem()
+  {
+    this.http.get("http://localhost:5000/remPatient/"+this.id,{observe:'response'}).subscribe(response=>
+    {
+      this.snackbar.open('Removed Patient', 'Dismiss', {
+        duration: 3000
+      });
+      this.router.navigateByUrl('/');
+    })
+  }
 }
